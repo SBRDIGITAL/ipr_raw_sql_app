@@ -5,6 +5,8 @@ from sqlite3 import Cursor, Connection
 
 from .models import ALL_TABLES
 
+from core.modules.app_logger import app_logger
+
 
 
 class DataBase:
@@ -45,9 +47,9 @@ class DataBase:
             try:
                 self.cursor.executescript(t)
                 self.connection.commit()
-            except:
-                print_exc()
+            except Exception as ex:
                 self.connection.rollback()
+                app_logger.exception('Ошибка при создании таблиц', exc_info=ex)
         [_create(table) for table in ALL_TABLES]
         
 

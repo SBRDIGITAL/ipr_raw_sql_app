@@ -9,28 +9,60 @@ class BaseDAO(DataBase):
         super().__init__(db_name)
     
     def get_all(self, table: TableNames):
-        pass    
+        try:
+            pass
+        
+        except Exception as ex:
+            raise ex
     
     def insert_one(self, table: TableNames):
-        pass
-    
+        try:
+            pass
+        
+        except Exception as ex:
+            raise ex
+        
     def update_one(self, table: TableNames):
-        pass
-    
+        try:
+            pass
+        
+        except Exception as ex:
+            raise ex
+        
     def get_one(self, table: TableNames):
-        pass
+        try:
+            pass
+        
+        except Exception as ex:
+            raise ex
     
     def delete_one(self, table: TableNames):
-        pass
+        try:
+            pass
+        
+        except Exception as ex:
+            raise ex
     
     def insert_many(self, table: TableNames):
-        pass
+        try:
+            pass
+        
+        except Exception as ex:
+            raise ex
     
     def update_many(self, table: TableNames):
-        pass
+        try:
+            pass
+
+        except Exception as ex:
+            raise ex
     
     def delete_many(self, table: TableNames):
-        pass
+        try:
+            pass
+
+        except Exception as ex:
+            raise ex
 
 
 

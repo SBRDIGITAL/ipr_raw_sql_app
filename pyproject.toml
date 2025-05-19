@@ -1,0 +1,7 @@
+[project]
+name = "ipr_raw_sql_app"
+version = "0.1.0"
+description = "IPR Raw SQL App"
+readme = "README.md"
+requires-python = "==3.12.9"
+dependencies = []

@@ -14,6 +14,11 @@ class DataBase:
     ## Класс для работы с базой данных `SQLite`.
 
     Этот класс управляет подключением к базе данных, созданием таблиц и выполнением запросов.
+    
+    Attributes:
+        db_name (str): Имя базы данных, включая расширение `.db`.
+        connection (Connection): Объект подключения к базе данных.
+        cursor (Cursor): Объект курсора для выполнения SQL-запросов.
     """
     def __init__(self, db_name: str = 'db_name') -> None:
         """
@@ -22,7 +27,7 @@ class DataBase:
         Создаёт подключение к базе данных и инициализирует курсор.
 
         Args:
-            db_name (str): Имя базы данных. По умолчанию `'db_name'`.
+            db_name (str): Имя базы данных `НЕ УКАЗЫВАТЬ .db`. По умолчанию `'db_name'`.
         """        
         self.db_name = db_name + '.db'
         self.connection: Connection = connect(self.db_name)

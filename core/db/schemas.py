@@ -47,6 +47,51 @@ class UserSchema(StaticFieldsSchema):
     is_active: bool = True
 
 
+class SomeUser(BaseModel):
+    """
+    ## Модель пользователя.
+
+    Представляет собой модель данных для пользователя с необходимыми полями.
+
+    Args:
+        BaseModel (BaseModel): Базовая модель `Pydantic` для валидации данных.
+    
+    Attributes:
+        id (int): Идентификатор пользователя.
+        name (str): Имя пользователя.
+        email (str): Электронная почта пользователя.
+        registration_date (date): Дата регистрации пользователя.
+        is_active (bool): Статус активности пользователя.
+    """
+    id: int
+    name: str
+    email: str
+    registration_date: date
+    is_active: bool
+
+
+class UserUpdate(BaseModel):
+    """
+    ## Модель обновления пользователя.
+
+    Представляет собой модель данных для обновления информации о пользователе.
+
+    Args:
+        BaseModel (BaseModel): Базовая модель `Pydantic` для валидации данных.
+    
+    Attributes:
+        name (Optional[str]): Имя пользователя (опционально).
+        email (Optional[str]): Электронная почта пользователя (опционально).
+        registration_date (Optional[date]): Дата регистрации пользователя (опционально).
+        is_active (Optional[bool]): Статус активности пользователя (опционально).
+    """ 
+    name: Optional[str] = None
+    email: Optional[str] = None
+    registration_date: Optional[date] = None
+    is_active: Optional[bool] = None
+
+
+
 class OrdersSchema(StaticFieldsSchema):
     """
     ## Схема заказа.

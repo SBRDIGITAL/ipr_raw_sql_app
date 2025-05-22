@@ -1,5 +1,7 @@
 from core.db.client import db
 
+from core.client.user import user_client
+
 
 
 class RawSqlApp:
@@ -8,7 +10,7 @@ class RawSqlApp:
         self.db = db
 
     def start(self):
-        pass
+        user_client.start()
 
 
 

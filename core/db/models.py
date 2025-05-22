@@ -9,7 +9,6 @@ CREATE_USER_TABLE = """
         email VARCHAR(100) UNIQUE,
         registration_date DATE DEFAULT CURRENT_DATE,
         is_active BOOLEAN DEFAULT true,
-        {field_created_at},
         {field_updated_at}
     );
 """.format(table_name=TablesName.USERS, **ALL_STATIC_FIELDS)
@@ -23,7 +22,6 @@ CREATE_ORDERS_TABLE = """
         order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         total_amount DECIMAL(10,2),
         status INTEGER,
-        {field_created_at},
         {field_updated_at},
         CONSTRAINT fk_orders_users 
             FOREIGN KEY (user_id) 
@@ -41,7 +39,6 @@ CREATE_PAYMENTS_TABLE = """
         order_id INT NOT NULL,
         payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         payment_method INTEGER,
-        {field_created_at},
         {field_updated_at},
         CONSTRAINT fk_payments_users
             FOREIGN KEY (user_id) 

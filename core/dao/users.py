@@ -6,45 +6,8 @@ from core.db.enums import *
 from core.db.mapping import UserTableFields
 from core.db.schemas import UserSchema, UserUpdate, SomeUser
 
+from .sql_templates import *
 
-class UserDAOSql:
-    """
-    ## Класс, содержащий `SQL`-запросы для работы с пользователями в базе данных.
-    """
-
-    # Получение всех пользователей
-    GET_ALL = """
-        SELECT * FROM {table_name}
-    """
-
-    # Получение одного пользователя
-    GET_ONE = """
-        SELECT * FROM {table_name}
-        WHERE {main_field} = ?
-    """
-
-    # Создание пользователя
-    CREATE_USER = """
-        INSERT INTO {table_name}
-        ({field_1}, {field_2}, {field_3}, {field_4})
-        VALUES (?, ?, ?, ?) 
-        RETURNING *
-    """
-
-    # Обновление пользователя
-    UPDATE_USER = """
-        UPDATE {table_name}
-        SET {field_1} = ?
-        WHERE {main_field} = ?
-        RETURNING *
-    """
-
-    # Удаление пользователя
-    DELETE_USER = """
-        DELETE FROM {table_name}
-        WHERE {main_field} = ?
-        RETURNING *
-    """
 
 
 class UserDAO(BaseDAO):
@@ -77,7 +40,7 @@ class UserDAO(BaseDAO):
             Exception: Для обработки других исключений.
         """
         try:
-            result = self.get_all(UserDAOSql.GET_ALL.format(table_name=self.table_name))
+            result = self.get_all(GET_ALL.format(table_name=self.table_name))
             data = [
                 SomeUser(
                     id=i[0],
@@ -107,7 +70,7 @@ class UserDAO(BaseDAO):
             Exception: Для обработки других исключений.
         """
         try:
-            query = UserDAOSql.CREATE_USER.format(
+            query = CREATE_ONE.format(
                 table_name=self.table_name,
                     field_1=UserTableFields.FIRST_NAME,
                     field_2=UserTableFields.EMAIL,
@@ -144,7 +107,7 @@ class UserDAO(BaseDAO):
         try:
             up_user = user.model_dump(exclude_unset=True)
             cortege = up_user.values()
-            query = UserDAOSql.UPDATE_USER.format(
+            query = UPDATE_ONE.format(
                 table_name=self.table_name,
                     field_1=UserTableFields.FIRST_NAME,
                     main_field=UserTableFields.ID
@@ -176,7 +139,7 @@ class UserDAO(BaseDAO):
             Exception: Для обработки других исключений.
         """
         try:
-            query = UserDAOSql.GET_ONE.format(
+            query = GET_ONE.format(
                 table_name=self.table_name,
                     main_field=UserTableFields.ID
             )
@@ -207,7 +170,7 @@ class UserDAO(BaseDAO):
             Exception: Для обработки других исключений.
         """
         try:
-            query = UserDAOSql.DELETE_USER.format(
+            query = DELETE_ONE.format(
                 table_name=self.table_name,
                     main_field=UserTableFields.ID
             )

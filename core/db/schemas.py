@@ -1,4 +1,3 @@
-from decimal import Decimal
 from datetime import datetime, date
 from typing import Annotated, Optional
 
@@ -111,9 +110,34 @@ class OrdersSchema(StaticFieldsSchema):
     """
     user_id: int
     order_date: date
-    total_amount: Decimal
-    status: OrderStatus
+    total_amount: float
+    status: int
 
+
+class SomeOrder(StaticFieldsSchema):
+    """
+    ## Модель для представления заказа.
+
+    Хранит информацию о заказе, включая идентификатор,
+    идентификатор пользователя, дату заказа, общую сумму и статус.
+    """
+    id: int
+    user_id: int
+    order_date: date
+    total_amount: float
+    status: int
+
+
+class UpdateOrder(StaticFieldsSchema):
+    """
+    ## Модель для обновления информации о заказе.
+
+    Позволяет обновлять поля заказа, при этом все поля являются необязательными.
+    """
+    user_id: Optional[int] = None
+    order_date: Optional[date] = None
+    total_amount: Optional[float] = None
+    status: Optional[int] = None
 
 
 class PaymentsSchema(StaticFieldsSchema):

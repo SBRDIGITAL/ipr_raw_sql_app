@@ -13,7 +13,6 @@ class RawSqlApp:
         user_client.start()
 
 
-
 if __name__ == '__main__':
     rsa = RawSqlApp()
     rsa.start()
